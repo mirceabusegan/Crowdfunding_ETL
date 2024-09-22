@@ -1,60 +1,26 @@
--- Droping tables if they exist
+--
+-- PostgreSQL database dump
+--
 
-drop table if exists "campaign" ;
-drop table if exists "category" ;
-drop table if exists "subcategory" ;
-drop table if exists "contacts" ;
+-- Dumped from database version 16.4
+-- Dumped by pg_dump version 16.4
 
--- Creating the 4 tables 
-CREATE TABLE "subcategory" (
-    "subcategory_id" VARCHAR(10) NOT NULL, 
-    "subcategory" VARCHAR(50) NOT NULL, 
-    CONSTRAINT "pk_subcategory" PRIMARY KEY (
-        "subcategory_id"
-    )	
-);
-SELECT * FROM subcategory;
+-- Started on 2024-09-22 18:56:53
 
-CREATE TABLE "category" (
-    "category_id" VARCHAR(10) NOT NULL, 
-    "category" VARCHAR(50) NOT NULL, 
-    CONSTRAINT "pk_category" PRIMARY KEY (
-        "category_id"
-    )
-);
-SELECT * FROM category;
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
 
-CREATE TABLE "contacts" (
-    "contact_id" int NOT NULL, 
-    "first_name" VARCHAR(50) NOT NULL, 
-    "last_name" VARCHAR(50) NOT NULL, 
-    "email" VARCHAR(100) NOT NULL, 
-    CONSTRAINT "pk_contacts" PRIMARY KEY (
-        "contact_id"
-    )
-);
-SELECT * FROM contacts;
+-- Completed on 2024-09-22 18:56:53
 
-CREATE TABLE "campaign" (
-    "cf_id" int NOT NULL,
-    "contact_id" int NOT NULL,
-    "company_name" VARCHAR(100) NOT NULL,
-    "description" text NOT NULL,
-    "goal" numeric(10,2) NOT NULL, 
-    "pledged" numeric(10,2) NOT NULL,
-    "outcome" VARCHAR(50) NOT NULL,
-    "backers_count" INT NOT NULL,
-    "country" VARCHAR(10) NOT NULL, 
-    "currency" VARCHAR(10) NOT NULL,
-    "launch_date" date  NOT NULL, 
-    "end_date" date  NOT NULL, 
-    "category_id" VARCHAR(10) NOT NULL, 
-    "subcategory_id" VARCHAR(10) NOT NULL, 
-    CONSTRAINT "pk_campaign" PRIMARY KEY (
-        "cf_id"
-	    ),
-	FOREIGN KEY (subcategory_id) REFERENCES subcategory(subcategory_id),
-	FOREIGN KEY (category_id) REFERENCES category(category_id),
-	FOREIGN KEY (contact_id) REFERENCES contacts(contact_id)
-);
-SELECT * FROM campaign;
+--
+-- PostgreSQL database dump complete
+--
+
